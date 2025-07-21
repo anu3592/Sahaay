@@ -17,7 +17,7 @@ const HomePage = () => {
     return (
         <div className="mt-20 p-4">
             <h1 className="text-2xl font-bold mb-4">Sahaay</h1>
-            <p className="mb-4">{message}</p>
+            
 
             <div className="flex flex-row justify-center items-center gap-6 flex-wrap">
 
