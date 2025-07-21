@@ -124,8 +124,8 @@ const Navbar = () => {
                     }
                     </ul>:
                     <ul>
-                        <li className="fontstyle text-white cursor-pointer" onClick={()=>navigate("/login")}>Login</li>
-                        <li className="fontstyle text-white cursor-pointer" onClick={()=>navigate("/register")}>Sign Up</li>
+                        <li className="fontstyle text-white cursor-pointer m-2" onClick={()=>navigate("/login")}>Login</li>
+                        <li className="fontstyle text-white cursor-pointer m-2" onClick={()=>navigate("/register")}>Sign Up</li>
                     </ul>
 }
                 </nav>
