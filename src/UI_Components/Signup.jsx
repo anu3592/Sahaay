@@ -24,7 +24,7 @@ const SignupPage = () => {
     if (name && email && phone && address && password && cPassword) {
 
       if (password === cPassword) {
-        let result = await fetch("http://localhost:9494/ticketApplication/registerUser", {
+        let result = await fetch("https://sahaay2.onrender.com/registerUser", {
           method: "POST",
           body: JSON.stringify({ name, email, phone, address, password }),
           headers: {

@@ -9,7 +9,7 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:9494/ticketApplication/')
+        fetch('https://sahaay2.onrender.com/')
             .then(response => response.text())
             .then(data => setMessage(data))
             .catch(error => console.log("Error", error));

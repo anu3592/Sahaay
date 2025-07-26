@@ -9,7 +9,7 @@ const ViewTickets = () => {
 
   useEffect(() => {
     let id = localStorage.getItem("id");
-    fetch(`http://localhost:9494/ticketApplication/getTickets/${id}`) // adjust your endpoint
+    fetch(`https://sahaay2.onrender.com/getTickets/${id}`) // adjust your endpoint
       .then(res => res.json())
       .then(data => {setTickets(data); console.log(data);})
       .catch(err => console.error("Error fetching tickets:", err));

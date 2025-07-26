@@ -60,7 +60,7 @@ const MCFform = () => {
     formData.append("status", "pending");
     formData.append("user_id", localStorage.getItem("id"));
     formData.append("image", image);
-    let result = await fetch('http://localhost:9494/ticketApplication/complaint', {
+    let result = await fetch('https://sahaay2.onrender.com/complaint', {
       method: "POST",
       //body: JSON.stringify({ name, title, phone, category, address, problemDesc: problem, status: "pending", user_id: localStorage.getItem("id"), image }),
       body: formData,

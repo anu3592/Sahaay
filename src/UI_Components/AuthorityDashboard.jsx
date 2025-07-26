@@ -9,7 +9,7 @@ const AuthorityDashboard = () => {
   const [reason, setReason] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:9494/ticketApplication/getAuthorityTickets/${localStorage.getItem("id")}`)
+    fetch(`https://sahaay2.onrender.com/getAuthorityTickets/${localStorage.getItem("id")}`)
       .then(res => res.json())
       .then(data => {
         setTickets(data);
@@ -30,7 +30,7 @@ const AuthorityDashboard = () => {
   };
 
   const closeTicket = (id) => {
-    fetch(`http://localhost:9494/ticketApplication/close/${id}`, { method: 'GET' })
+    fetch(`https://sahaay2.onrender.com/close/${id}`, { method: 'GET' })
       .then(() => {
         alert('Ticket closed');
         setTickets(prev => prev.filter(t => t.id !== id));
@@ -39,7 +39,7 @@ const AuthorityDashboard = () => {
   };
 
   const escalateTicket = (ticket) => {
-    fetch(`http://localhost:9494/ticketApplication/escalate/${ticket.id}`, { method: 'POST',
+    fetch(`https://sahaay2.onrender.com/escalate/${ticket.id}`, { method: 'POST',
       body: JSON.stringify({ticketId: ticket.id, from_authority_id: ticket.assigned_to, reason}),
       headers: {
         'content-type': 'application/json'

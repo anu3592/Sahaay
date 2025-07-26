@@ -13,7 +13,7 @@ const AuthorityLogin = ()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let result = await fetch("http://localhost:9494/ticketApplication/loginAuthority",{
+    let result = await fetch("https://sahaay2.onrender.com/loginAuthority",{
         method: "POST",
         body: JSON.stringify({email, password}),
         headers: {

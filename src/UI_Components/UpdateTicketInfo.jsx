@@ -28,7 +28,7 @@ const UpdateTicketInfo = () => {
   const updateComplaint = async (e)=>{
     e.preventDefault();
     console.log(name,phone,category,address,problem);
-    fetch('http://localhost:9494/ticketApplication/updateComplaint', {
+    fetch('https://sahaay2.onrender.com/updateComplaint', {
       method: "PUT",
       body: JSON.stringify({id: myState[myState.length-1].id, name, title, phone, category, address, problemDesc:problem}),
       headers: {

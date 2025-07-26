@@ -21,7 +21,7 @@ const AuthoritySignup = () => {
 
     if (name && email && phone && department && level && location && password && cPassword) {
       if (password === cPassword) {
-        let result = await fetch("http://localhost:9494/ticketApplication/authoritySignup", {
+        let result = await fetch("https://sahaay2.onrender.com/authoritySignup", {
           method: "POST",
           body: JSON.stringify({ name, email, phone, department, level, location, password, no_of_ticket_assigned: 0 }),
           headers: {

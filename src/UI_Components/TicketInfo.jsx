@@ -24,7 +24,7 @@ const MCPForm = () => {
     // console.log("authority info",result);
     if(myState.length>0)
     {
-    fetch(`http://localhost:9494/ticketApplication/getAuthorityInfo/${myState[myState.length-1].id}`)
+    fetch(`https://sahaay2.onrender.com/getAuthorityInfo/${myState[myState.length-1].id}`)
       .then((result) => result.json())
       .then((data) => { setAuthorities(data); console.log("authority info", data); });
     }

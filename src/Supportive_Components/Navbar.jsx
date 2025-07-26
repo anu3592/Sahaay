@@ -71,7 +71,7 @@ const Navbar = () => {
                         onClick={() => {
                             changeButtonClrRef.current.style.backgroundColor = "green";
                             changeButtonClrRef.current.style.color = "white";
-                            fetch(`http://localhost:9494/ticketApplication/search/${search}`)
+                            fetch(`https://sahaay2.onrender.com/search/${search}`)
                                 .then((data) => data.json())
                                 .then((result) => { setSearchResult(result); dispatch(sendSearchData(result));console.log(result); })
                         }}
