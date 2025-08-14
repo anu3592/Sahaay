@@ -39,6 +39,7 @@ const AuthorityDashboard = () => {
   for (let i = 0; i < byteArray.length; i += chunkSize) {
     binary += String.fromCharCode.apply(null, byteArray.subarray(i, i + chunkSize));
   }
+  console.log(btoa(binary));
   return btoa(binary);
 }
 
