@@ -29,6 +29,19 @@ const AuthorityDashboard = () => {
     setFilteredTickets(filtered);
   };
 
+  function binaryStringToBase64(binaryString) {
+  const byteArray = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    byteArray[i] = binaryString.charCodeAt(i) & 0xff;
+  }
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let i = 0; i < byteArray.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, byteArray.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
   const closeTicket = (id) => {
     fetch(`https://sahaay2.onrender.com/close/${id}`, { method: 'GET' })
       .then(() => {
@@ -68,7 +81,7 @@ const AuthorityDashboard = () => {
               <p className="text-gray-700"><strong>Status:</strong> {ticket.status}</p>
               <p className="text-gray-700"><strong>Created At:</strong> {new Date(ticket.createdAt).toLocaleString()}</p>
               <input type='text' onChange={(e)=>setReason(e.target.value)} placeholder='reason to escalate' className='p-2 border-1 rounded-xl m-1'/>
-              <img src={`data:image/jpg;base64,${ticket.image}`}/>
+              <img src={`data:image/jpg;base64,${binaryStringToBase64(ticket.image)}`}/>
 
               <div className="mt-4 flex justify-end space-x-3">
                 <button
