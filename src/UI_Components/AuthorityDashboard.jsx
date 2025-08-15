@@ -36,6 +36,7 @@ const AuthorityDashboard = () => {
   }
   let binary = '';
   bytes.forEach(b => binary += String.fromCharCode(b));
+  console.log(btoa(binary));
   return btoa(binary);
 }
 
