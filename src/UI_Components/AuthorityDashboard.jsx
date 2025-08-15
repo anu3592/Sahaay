@@ -80,7 +80,7 @@ const AuthorityDashboard = () => {
               <p className="text-gray-700"><strong>Status:</strong> {ticket.status}</p>
               <p className="text-gray-700"><strong>Created At:</strong> {new Date(ticket.createdAt).toLocaleString()}</p>
               <input type='text' onChange={(e) => setReason(e.target.value)} placeholder='reason to escalate' className='p-2 border-1 rounded-xl m-1' />
-              <img src={`data:image/jpg;base64,${binaryStringToBase64(ticket.image)}`} />
+              <img src={`data:image/jpg;base64,${ticket.image}`} />
 
               <div className="mt-4 flex justify-end space-x-3">
                 <button
