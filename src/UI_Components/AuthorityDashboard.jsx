@@ -18,7 +18,7 @@ const AuthorityDashboard = () => {
       })
       .catch(err => console.error('Error fetching tickets:', err));
 
-      
+
   }, []);
 
   const handleSearch = () => {
@@ -30,18 +30,18 @@ const AuthorityDashboard = () => {
   };
 
   function binaryStringToBase64(binaryString) {
-  const byteArray = new Uint8Array(binaryString.length);
-  for (let i = 0; i < binaryString.length; i++) {
-    byteArray[i] = binaryString.charCodeAt(i) & 0xff;
+    const byteArray = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      byteArray[i] = binaryString.charCodeAt(i) & 0xff;
+    }
+    let binary = '';
+    const chunkSize = 0x8000;
+    for (let i = 0; i < byteArray.length; i += chunkSize) {
+      binary += String.fromCharCode.apply(null, byteArray.subarray(i, i + chunkSize));
+    }
+    console.log(btoa(binary));
+    return btoa(binary);
   }
-  let binary = '';
-  const chunkSize = 0x8000;
-  for (let i = 0; i < byteArray.length; i += chunkSize) {
-    binary += String.fromCharCode.apply(null, byteArray.subarray(i, i + chunkSize));
-  }
-  console.log(btoa(binary));
-  return btoa(binary);
-}
 
   const closeTicket = (id) => {
     fetch(`https://sahaay2.onrender.com/close/${id}`, { method: 'GET' })
@@ -53,22 +53,23 @@ const AuthorityDashboard = () => {
   };
 
   const escalateTicket = (ticket) => {
-    fetch(`https://sahaay2.onrender.com/escalate/${ticket.id}`, { method: 'POST',
-      body: JSON.stringify({ticketId: ticket.id, from_authority_id: ticket.assigned_to, reason}),
+    fetch(`https://sahaay2.onrender.com/escalate/${ticket.id}`, {
+      method: 'POST',
+      body: JSON.stringify({ ticketId: ticket.id, from_authority_id: ticket.assigned_to, reason }),
       headers: {
         'content-type': 'application/json'
       }
-     })
+    })
       .then(() => alert('Ticket escalated'));
-      setTickets(prev => prev.filter(t => t.id !== ticket.id));
-      setFilteredTickets(prev => prev.filter(t => t.id !== ticket.id));
+    setTickets(prev => prev.filter(t => t.id !== ticket.id));
+    setFilteredTickets(prev => prev.filter(t => t.id !== ticket.id));
   };
 
   return (
     <div className="p-4 sm:p-6 bg-gray-100 min-h-screen mt-20">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-4 sm:mb-0">Assigned Tickets</h2>
-        
+
       </div>
 
       {filteredTickets.length !== 0 ? (
@@ -81,8 +82,8 @@ const AuthorityDashboard = () => {
               <p className="text-gray-700"><strong>Description:</strong> {ticket.problemDesc}</p>
               <p className="text-gray-700"><strong>Status:</strong> {ticket.status}</p>
               <p className="text-gray-700"><strong>Created At:</strong> {new Date(ticket.createdAt).toLocaleString()}</p>
-              <input type='text' onChange={(e)=>setReason(e.target.value)} placeholder='reason to escalate' className='p-2 border-1 rounded-xl m-1'/>
-              <img src={`data:image/jpg;base64,${binaryStringToBase64(ticket.image)}`}/>
+              <input type='text' onChange={(e) => setReason(e.target.value)} placeholder='reason to escalate' className='p-2 border-1 rounded-xl m-1' />
+              <img src={`data:image/jpg;base64,${binaryStringToBase64(ticket.image)}`} />
 
               <div className="mt-4 flex justify-end space-x-3">
                 <button
