@@ -27,7 +27,7 @@ const ViewTickets = () => {
               <th className="py-3 px-4">Status</th>
               
               <th className="py-3 px-4">Date</th>
-              <th className="py-3 px-4">Escalated</th>
+              {/*<th className="py-3 px-4">Escalated</th>*/}
               <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
