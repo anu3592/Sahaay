@@ -6,7 +6,6 @@ import { Link } from "react-router";
 const ViewTickets = () => {
   const [tickets, setTickets] = useState([]);
   const dispatch = useDispatch();
-  const date = new Date();
   useEffect(() => {
     let id = localStorage.getItem("id");
     fetch(`https://sahaay2.onrender.com/getTickets/${id}`) // adjust your endpoint
@@ -40,7 +39,7 @@ const ViewTickets = () => {
                   <td className="py-2 px-4">{ticket.category}</td>
                   <td className="py-2 px-4">{ticket.status}</td>
                   
-                  <td className="py-2 px-4">{date(ticket.created_at).toLocalDateString()}</td>
+                  <td className="py-2 px-4">{new Date(ticket.created_at).toLocaleDateString()}</td>
                   {/*<td className="py-2 px-4">{ticket.escalated ? "Yes" : "No"}</td>*/}
                   <td className="py-2 px-4 space-x-2">
                     <Link to="/info"><button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded button1" onClick={()=>dispatch(showDetails(ticket))}>View</button></Link>
