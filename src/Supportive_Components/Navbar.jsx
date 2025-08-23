@@ -109,7 +109,7 @@ const Navbar = () => {
             <div
                 className={clicked ?
                     "fixed bottom-0 left-0 lg:w-[300px] lg:h-[80%] w-[-1px] h-[-1px] bg-gray-500 z-10 p-4 shadow-lg overflow-y-auto duration-400"
-                    : "fixed bottom-[-100%] left-0 lg:w-0 lg:h-0 w-0 h-0 bg-gray-500 z-10 duration-400"
+                    : "fixed bottom-[-100%] left-[-1%] lg:w-[300px] lg:h-[80%] w-[-1px] h-[-1px] bg-gray-500 z-10 duration-400"
                 }
             >
                 <nav>
