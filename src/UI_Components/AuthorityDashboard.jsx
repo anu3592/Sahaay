@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { useLoading } from '../context/LoadingContext';
 
 const AuthorityDashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -7,6 +8,7 @@ const AuthorityDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const [reason, setReason] = useState('');
+  const{showLoading, hideLoading} = useLoading();
 
   useEffect(() => {
     showLoading();
