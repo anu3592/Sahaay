@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
+import { useLoading } from "../context/LoadingContext";
 
 const UpdateTicketInfo = () => {
 
@@ -13,6 +14,7 @@ const UpdateTicketInfo = () => {
   const navigate = useNavigate();
   const myState = useSelector((state) => state.showDetails);
   let id;
+  const {showLoading, hideLoading} = useLoading();
 
   useEffect(() => {
   if (myState && myState.length > 0) {
@@ -27,6 +29,7 @@ const UpdateTicketInfo = () => {
 
   const updateComplaint = async (e)=>{
     e.preventDefault();
+    showLoading();
     console.log(name,phone,category,address,problem);
     fetch('https://sahaay2.onrender.com/updateComplaint', {
       method: "PUT",
@@ -34,7 +37,8 @@ const UpdateTicketInfo = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(()=>{alert("Complaint Updated Successfully!");
+    }).then(()=>{hideLoading();
+      alert("Complaint Updated Successfully!");
       navigate("/menu");});    
       
   }

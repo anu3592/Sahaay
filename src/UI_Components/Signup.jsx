@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useLoading } from '../context/LoadingContext';
 
 const SignupPage = () => {
   //   const [formData, setFormData] = useState({
@@ -18,9 +19,11 @@ const SignupPage = () => {
   const [cPassword, setCpassword] = useState();
   const navigate = useNavigate();
 
+  const {showLoading, hideLoading} = useLoading();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    showLoading();
     if (name && email && phone && address && password && cPassword) {
 
       if (password === cPassword) {
@@ -46,6 +49,7 @@ const SignupPage = () => {
         localStorage.setItem("type", "user");
 
         if (result) {
+          hideLoading();
           navigate('/menu');
         }
 

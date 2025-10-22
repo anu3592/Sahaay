@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { useLoading } from "../context/LoadingContext";
 
 
 
@@ -14,11 +15,12 @@ const AuthoritySignup = () => {
   const [password, setPassword] = useState("");
   const [cPassword, setCpassword] = useState("");
   const navigate = useNavigate();
+  const {showLoading, hideLoading} = useLoading();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    showLoading();
     if (name && email && phone && department && level && location && password && cPassword) {
       if (password === cPassword) {
         let result = await fetch("https://sahaay2.onrender.com/authoritySignup", {
@@ -40,6 +42,7 @@ const AuthoritySignup = () => {
         localStorage.setItem("time", Date.now());
 
         if (result) {
+          hideLoading();
           navigate('/authorityDashboard');
         }
 

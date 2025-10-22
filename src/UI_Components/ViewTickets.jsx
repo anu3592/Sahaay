@@ -2,16 +2,23 @@ import React, { use, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { showDetails } from "../action";
 import { Link } from "react-router";
+import { useLoading } from "../context/LoadingContext";
 
 const ViewTickets = () => {
   const [tickets, setTickets] = useState([]);
   const dispatch = useDispatch();
+  const {showLoading, hideLoading} = useLoading();
   useEffect(() => {
     let id = localStorage.getItem("id");
+    showLoading();
     fetch(`https://sahaay2.onrender.com/getTickets/${id}`) // adjust your endpoint
       .then(res => res.json())
-      .then(data => {setTickets(data); console.log(data);})
-      .catch(err => console.error("Error fetching tickets:", err));
+      .then(data => {setTickets(data); console.log(data);
+        hideLoading();
+      })
+      .catch((err) => {console.error("Error fetching tickets:", err);
+        hideLoading();
+      });
   }, []);
 
   return (

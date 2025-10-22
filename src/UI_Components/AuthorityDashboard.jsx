@@ -9,14 +9,18 @@ const AuthorityDashboard = () => {
   const [reason, setReason] = useState('');
 
   useEffect(() => {
+    showLoading();
     fetch(`https://sahaay2.onrender.com/getAuthorityTickets/${localStorage.getItem("id")}`)
       .then(res => res.json())
       .then(data => {
         setTickets(data);
         setFilteredTickets(data);
         console.log(data);
+        hideLoading();
       })
-      .catch(err => console.error('Error fetching tickets:', err));
+      .catch((err) => {console.error('Error fetching tickets:', err);
+        hideLoading();
+      });
 
 
   }, []);

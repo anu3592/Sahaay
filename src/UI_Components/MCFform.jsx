@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import { useLoading } from "../context/LoadingContext";
 
 const MCFform = () => {
 
@@ -15,6 +16,7 @@ const MCFform = () => {
   const navigate = useNavigate();
   let id;
   const { type } = useParams();
+  const {showLoading, hideLoading} = useLoading();
 
   useEffect(() => {
     if (type === "MCF") {
@@ -49,6 +51,7 @@ const MCFform = () => {
 
   const registerComplaint = async (e) => {
     e.preventDefault();
+    showLoading();
     console.log(name, phone, category, address, problem);
     const formData = new FormData();
     formData.append("name", name);
@@ -69,6 +72,7 @@ const MCFform = () => {
     result = await result.json();
 
     if (result.name != null) {
+      hideLoading();
       alert("Complaint Registered Successfully!");
       navigate("/menu");
     }
