@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLoaderData } from 'react-router';
 import { useNavigate } from 'react-router';
 
 const LoginPage = () => {
@@ -6,13 +7,15 @@ const LoginPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+
+  const {showLoading, hideLoading} = useLoaderData();
 //   const handleChange = e => {
 //     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 //   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    showLoading();
     let result = await fetch("https://sahaay2.onrender.com/loginUser",{
         method: "POST",
         body: JSON.stringify({email, password}),
@@ -36,6 +39,7 @@ const LoginPage = () => {
     
     if(result)
     {
+      hideLoading();
       navigate('/menu');
     }
     console.log('Logging in with:', localStorage.getItem("name"));
