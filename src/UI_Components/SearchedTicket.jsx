@@ -19,7 +19,7 @@ else{
         {ticket.title?.toUpperCase()}
       </h2>
       <p className="text-2xl m-2">{ticket.problemDesc}</p>
-      <h2>Status:</h2>
+      <h2 className="text-3xl font-bold m-4">Status:</h2>
       <p className="text-2xl m-2">{ticket.status}</p>
       <div className="text-right">
         <p>-from: {ticket.name}</p>
