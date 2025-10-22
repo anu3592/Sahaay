@@ -4,6 +4,7 @@ import { FaArrowDown } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { sendSearchData } from "../action";
+import { useLoading } from "../context/LoadingContext";
 
 const Navbar = () => {
     const changeButtonClrRef = useRef();
@@ -16,6 +17,8 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const auth = localStorage.getItem("id");
     const navigate = useNavigate();
+
+    const {showLoading, hideLoading} = useLoading();
 
 
     const onLogoutClicked = () => {
@@ -72,9 +75,11 @@ const Navbar = () => {
                         onClick={() => {
                             changeButtonClrRef.current.style.backgroundColor = "green";
                             changeButtonClrRef.current.style.color = "white";
+                            showLoading();
                             fetch(`https://sahaay2.onrender.com/search/${search}`)
                                 .then((data) => data.json())
-                                .then((result) => { setSearchResult(result); dispatch(sendSearchData(result));console.log(result); })
+                                .then((result) => { setSearchResult(result); dispatch(sendSearchData(result));console.log(result); hideLoading();})
+                                .catch((e)=>{hideLoading();});
                         }}
                     >
                         Search
