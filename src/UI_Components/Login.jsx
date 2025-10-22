@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
+//import { useLoaderData } from 'react-router';
 import { useNavigate } from 'react-router';
+import { useLoading } from '../context/LoadingContext';
 
 const LoginPage = () => {
   //const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -8,7 +9,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const {showLoading, hideLoading} = useLoaderData();
+  const {showLoading, hideLoading} = useLoading();
 //   const handleChange = e => {
 //     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 //   };
