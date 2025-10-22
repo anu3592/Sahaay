@@ -47,15 +47,22 @@ const AuthorityDashboard = () => {
 }
 
   const closeTicket = (id) => {
+    showLoading();
     fetch(`https://sahaay2.onrender.com/close/${id}`, { method: 'GET' })
       .then(() => {
+        hideLoading();
         alert('Ticket closed');
         setTickets(prev => prev.filter(t => t.id !== id));
         setFilteredTickets(prev => prev.filter(t => t.id !== id));
+      })
+      .catch((e)=>{hideLoading();
+        console.log("Error in closing Ticket: ",e)
+
       });
   };
 
   const escalateTicket = (ticket) => {
+    showLoading();
     fetch(`https://sahaay2.onrender.com/escalate/${ticket.id}`, {
       method: 'POST',
       body: JSON.stringify({ ticketId: ticket.id, from_authority_id: ticket.assigned_to, reason }),
@@ -63,7 +70,10 @@ const AuthorityDashboard = () => {
         'content-type': 'application/json'
       }
     })
-      .then(() => alert('Ticket escalated'));
+      .then(() => {hideLoading();
+        alert('Ticket escalated');})
+      .catch((e)=>{hideLoading();
+        console.log("Error in Escalating the Ticket: ",e);});
     setTickets(prev => prev.filter(t => t.id !== ticket.id));
     setFilteredTickets(prev => prev.filter(t => t.id !== ticket.id));
   };

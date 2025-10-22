@@ -20,6 +20,7 @@ const Navbar = () => {
 
     const onLogoutClicked = () => {
         localStorage.clear();
+        setShowDetails(!showDetails);
         naviagte("/");
 
     }
