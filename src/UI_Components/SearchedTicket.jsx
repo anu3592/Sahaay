@@ -12,14 +12,15 @@ const SearchedTicket = () => {
       </div>
     );
   }
-
-  
+else{  
   return (
     <div className="flex flex-col w-[800px] h-[50%] rounded-2xl p-3 boxshadow">
       <h2 className="text-4xl font-bold m-4">
         {ticket.title?.toUpperCase()}
       </h2>
       <p className="text-2xl m-2">{ticket.problemDesc}</p>
+      <h2>Status:</h2>
+      <p className="text-2xl m-2">{ticket.status}</p>
       <div className="text-right">
         <p>-from: {ticket.name}</p>
         <p>-phone: {ticket.phone}</p>
@@ -27,6 +28,7 @@ const SearchedTicket = () => {
       </div>
     </div>
   );
+}
 };
 
 export default SearchedTicket;
