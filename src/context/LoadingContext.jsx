@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import Loader from '../UI_Components/Loader';
 
 const LoadingContext = createContext();
 
@@ -11,7 +12,7 @@ export const LoadingProvider = ({ children }) => {
   return (
     <LoadingContext.Provider value={{ loading, showLoading, hideLoading }}>
       {children}
-      {loading && <Loader />}
+      {loading && <Loader/>}
     </LoadingContext.Provider>
   );
 };
